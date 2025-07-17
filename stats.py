@@ -9,6 +9,7 @@ def book_char_count(book_text: str):
     # and counts the occurances of each character
     char_count = {}
     for c in book_text:
+        c = c.lower()
         if c not in char_count:
             char_count[c] = 1
         else:
