@@ -9,11 +9,22 @@ def get_book_text(book_path: str):
 
 
 def main():
-    book_text = get_book_text("books/frankenstein.txt")
+    path = "books/frankenstein.txt"
+    book_text = get_book_text(path)
     word_count = stats.book_word_count(book_text)
     char_count = stats.book_char_count(book_text)
-    print(f"{word_count} words found in the document")
-    print(char_count)
+    sorted_char_count = stats.sorted_char_count(char_count)
+
+    print("============ BOOKBOT ============")
+    print(f"Analyzing book found at {path}")
+    print("----------- Word Count ----------")
+    print(f"Found {word_count} total words")
+    print("--------- Character Count -------")
+    
+    for i in sorted_char_count:
+        print(f"{i['name']}: {i['num']}")
+
+    print("============= END ===============")
     return None
 
 if __name__ == "__main__":
