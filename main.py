@@ -1,6 +1,7 @@
 import stats # never really cared but import this way to not have functions fully take over the namespace
 # This is a little more verbose than "from stats import *"
 # Wether this is industry standard or not, idk.
+import sys
 
 def get_book_text(book_path: str):
     # Takes a path to a book file and returns its content as a string.
@@ -9,7 +10,14 @@ def get_book_text(book_path: str):
 
 
 def main():
-    path = "books/frankenstein.txt"
+    arguments = sys.argv # Recieve user CLI arguments
+    if len(arguments) != 2:
+        # Not 2 arguments, exit program with status code 1
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+
+    path = arguments[1] # 2nd argument is the path to the book file
+    
     book_text = get_book_text(path)
     word_count = stats.book_word_count(book_text)
     char_count = stats.book_char_count(book_text)
